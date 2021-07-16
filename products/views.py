@@ -68,9 +68,8 @@ class ProductsView(View) :
             else :
                 q = Q(category__id = category_id)
 
-            products = Product.objects.prefetch_related('option_set').filter(q)\
-                        .annotate(min_price = Min('option__price'),total_sales = Sum('option__sales'))\
-                        .order_by(options[sort])[offset:limit]
+            products = Product.objects.annotate(min_price = Min('option__price'),total_sales = Sum('option__sales'))\
+                .filter(q).order_by(options[sort]).prefetch_related('option_set')
 
             productlist = [{
                     "product_id"   : product.id,
@@ -87,7 +86,8 @@ class ProductsView(View) :
                                         "weight"    : option.weight,
                                         "stocks"    : option.stocks
                                         } for option in  product.option_set.all()]                             
-                } for product in products]
+                } for product in products[offset:limit]
+            ]
 
             return JsonResponse({"results": productlist}, status=200)
 
