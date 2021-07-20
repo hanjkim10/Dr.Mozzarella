@@ -16,23 +16,53 @@
  ### 백엔드
  이동명, 김한준, 안희수
 
+ ### API 문서
+ - https://documenter.getpostman.com/view/12180757/Tzm3nciR
+
  ### 기술스텍
  - python
  - django
  - MySQL
  - RESTful API
  - AWS
- - jwt
+ - PyJWT
  - bcrypt
 
 ### 구현기능
-- signup & signin
-- Decorator
-- Product Category: Milk, Style, Country 카테고리로 나뉘어 메인페이지와 제품 카테고리 페이지에 제공되는 데이터 필터링 구현
-- Product Detail: 추천 & 비교 상품 API 구현
-- Cart
+공통
+- 프로젝트 초기 세팅
+- Database 모델링 및 ERD
 
+김한준
+- 회원가입 & 로그인
+    - 이메일, 비밀번호 정규식 검사
+    - 비밀번호 bcrypt 암호화
+    - JWT Access Token 전송
+- 유저인증
+    - JWT Access Token 유효성 검토
+    - Decorator 활용
+- 제품 상세페이지 엔드포인트
+    - 특정 상품 상세 data
+    - 상품에 따른 추천/비교 상품 data
 
+이동명
+- 장바구니 엔드포인트
+    - 카트 제품 추가 및 수량 변경
+    - 요청 수량 및 재고 비교
+- 주문 엔드포인트
+    - 주문 이력관리
+- 쿠폰 엔드포인트
+    - 쿠폰 유효성 검토
+- 메인페이지 엔드포인트
+    - 메인페이지 Banner data 
+    - 네비게이션바 data
+- 백엔드 서버 배포
+    - AWS
+
+안희수
+- 카테고리 페이지 엔드포인트
+    - 카테고리별 제품 data
+    - 가격/판매량/평점에 따른 제품 sorting list 제공
 
 Reference
 - 이 프로젝트는 Dr.jart+ 사이트를 참조하여 학습목적으로 만들었습니다.
