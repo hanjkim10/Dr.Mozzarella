@@ -6,8 +6,6 @@
 <br>
 <br>
 <br>
-
-
 - 회원가입 & 로그인
 ```python
 class SignupView(View):
@@ -58,7 +56,7 @@ class SigninView(View):
         except KeyError:
             return JsonResponse({"MESSAGE":"KEY ERROR"}, status = 400)
 ```
-
+<br>
 - 유저인증
 ```python
 def user_validator(func):
@@ -84,7 +82,7 @@ def user_validator(func):
  
     return wrapper
 ```
-
+<br>
 - 제품 상세페이지 엔드포인트
 ```python
 class ProductDetailView(View):
@@ -180,9 +178,9 @@ class ProductDetailView(View):
 
         return JsonResponse ({"results": results}, status = 200)
  ```
-
-
-
+<br>
+<br>
+<br>
  ### 개발 인원 및 기간
  개발기간 : 2021/7/5 ~ 2021/7/16
  개발 인원 : 프론트엔드 3명, 백엔드 3명
