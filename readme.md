@@ -6,6 +6,7 @@
 <br>
 <br>
 <br>
+
 - 회원가입 & 로그인
 ```python
 class SignupView(View):
@@ -56,6 +57,7 @@ class SigninView(View):
         except KeyError:
             return JsonResponse({"MESSAGE":"KEY ERROR"}, status = 400)
 ```
+
 <br>
 - 유저인증
 ```python
@@ -82,6 +84,7 @@ def user_validator(func):
  
     return wrapper
 ```
+
 <br>
 - 제품 상세페이지 엔드포인트
 ```python
@@ -178,6 +181,7 @@ class ProductDetailView(View):
 
         return JsonResponse ({"results": results}, status = 200)
  ```
+ 
 <br>
 <br>
 <br>
