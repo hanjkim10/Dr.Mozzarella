@@ -87,6 +87,7 @@ def user_validator(func):
 ```
 
 <br>
+
 - 제품 상세페이지 엔드포인트
 ```python
 class ProductDetailView(View):
