@@ -219,11 +219,9 @@ class ProductDetailView(View):
 - Database 모델링 및 ERD
 
 김한준
-- 회원가입 & 로그인
+- 회원가입 & 로그인 & 유저인증
     - 이메일, 비밀번호 정규식 검사
     - 비밀번호 bcrypt 암호화
-    - JWT Access Token 전송
-- 유저인증
     - JWT Access Token 유효성 검토
     - Decorator 활용
 - 제품 상세페이지 엔드포인트
