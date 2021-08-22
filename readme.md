@@ -199,9 +199,6 @@ class ProductDetailView(View):
  ### 백엔드
  이동명, 김한준, 안희수
 
- ### API 문서
- - https://documenter.getpostman.com/view/12180757/Tzm3nciR
-
  ### 기술스텍
  - python
  - django
