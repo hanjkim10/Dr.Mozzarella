@@ -227,6 +227,10 @@ class ProductDetailView(View):
 - 제품 상세페이지 엔드포인트
     - 특정 상품 상세 data
     - 상품에 따른 추천/비교 상품 data
+- AWS를 통한 백엔드 서버 배포
+    - EC2를 이용한 개발 서버 구축
+    - RDS를 이용한 데이터베이스 구축
+    - gunicorn을 활용한 서버 패보
 
 이동명
 - 장바구니 엔드포인트
@@ -239,8 +243,7 @@ class ProductDetailView(View):
 - 메인페이지 엔드포인트
     - 메인페이지 Banner data 
     - 네비게이션바 data
-- 백엔드 서버 배포
-    - AWS
+
 
 안희수
 - 카테고리 페이지 엔드포인트
