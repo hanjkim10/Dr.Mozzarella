@@ -5,9 +5,12 @@ from django.http                 import JsonResponse
 from django.db.models            import Q
 from django.db.models            import Max, Min, Sum
 
+from decorators   import query_debugger
+
 from products.models             import Category, Menu, Option, Product
 
 class MenuView(View):
+    @query_debugger
     def get(self, request):
         menus = Menu.objects.all()
 
@@ -27,6 +30,7 @@ class MenuView(View):
         return JsonResponse({"results": results}, status=200)
 
 class CategoryView(View):
+    @query_debugger
     def get(self, request, category_id):
         try:
             category = Category.objects.get(id = category_id)
@@ -41,6 +45,7 @@ class CategoryView(View):
             return JsonResponse({"message": "INVALID_CATEGORY_ID"}, status=404)
 
 class ProductsView(View) :
+    @query_debugger
     def get(self,request) :
         try :
             category_id  = request.GET.get("category", 0)
@@ -72,6 +77,7 @@ class ProductsView(View) :
                 .filter(q).order_by(options[sort]).prefetch_related('option_set')
 
             productlist = [{
+                    "author_id"    : product.author.id,
                     "product_id"   : product.id,
                     "product_name" : product.name,
                     "category_id"  : category_id,
@@ -101,6 +107,7 @@ class ProductsView(View) :
             return JsonResponse({"MESSAGE": "INVALID_CATEGORY_ID"}, status=400)
 
 class ProductDetailView(View):
+    @query_debugger
     def get(self, request, product_id):
         current_product = Product.objects.select_related('nutrition')\
             .prefetch_related('category', 'option_set', 'image_set', 'category__menu')\
