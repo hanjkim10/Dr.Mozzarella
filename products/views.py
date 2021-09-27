@@ -7,9 +7,15 @@ from django.db.models            import Max, Min, Sum
 
 from decorators   import query_debugger
 
+from rest_framework.views import APIView
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
+
+from products.response import products_schema_dict
 from products.models             import Category, Menu, Option, Product
 
-class MenuView(View):
+class MenuView(APIView):
+    @swagger_auto_schema(manual_parameters = [], responses = products_schema_dict)
     @query_debugger
     def get(self, request):
         menus = Menu.objects.all()
@@ -29,7 +35,8 @@ class MenuView(View):
 
         return JsonResponse({"results": results}, status=200)
 
-class CategoryView(View):
+class CategoryView(APIView):
+    @swagger_auto_schema(manual_parameters = [], responses = products_schema_dict)
     @query_debugger
     def get(self, request, category_id):
         try:
@@ -44,7 +51,8 @@ class CategoryView(View):
         except Category.DoesNotExist:
             return JsonResponse({"message": "INVALID_CATEGORY_ID"}, status=404)
 
-class ProductsView(View) :
+class ProductsView(APIView) :
+    @swagger_auto_schema(manual_parameters = [], responses = products_schema_dict)
     @query_debugger
     def get(self,request) :
         try :
@@ -106,7 +114,8 @@ class ProductsView(View) :
         except Category.DoesNotExist:
             return JsonResponse({"MESSAGE": "INVALID_CATEGORY_ID"}, status=400)
 
-class ProductDetailView(View):
+class ProductDetailView(APIView):
+    @swagger_auto_schema(manual_parameters = [], responses = products_schema_dict)
     @query_debugger
     def get(self, request, product_id):
         current_product = Product.objects.select_related('nutrition')\

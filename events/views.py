@@ -2,8 +2,14 @@ from django.views import View
 from django.http  import JsonResponse
 
 from events.models import ProductEvent, CategoryEvent, SloganEvent
+from events.response import events_schema_dict
+
+from rest_framework.views import APIView
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 
 class EventView(View):
+    @swagger_auto_schema(manual_parameters = [], responses = events_schema_dict)
     def get(self, request):
         try:
             product_events_count  = int(request.GET.get('product-events-count', 4))

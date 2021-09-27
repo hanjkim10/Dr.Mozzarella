@@ -9,8 +9,14 @@ from django.db      import transaction
 from orders.models   import Cart, Order, OrderItem, OrderStatus, ItemStatus, Coupon
 from products.models import Option
 from accounts.utils  import user_validator
+from orders.response import orders_schema_dict
 
-class CartView(View):
+from rest_framework.views import APIView
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
+
+class CartView(APIView):
+    @swagger_auto_schema(manual_parameters = [], responses = orders_schema_dict)
     @user_validator
     def post(self, request):
         try:
@@ -41,6 +47,7 @@ class CartView(View):
         except Option.DoesNotExist:
             return JsonResponse({"message": "INVALID_OPTION_ID"}, status=404)
 
+    @swagger_auto_schema(manual_parameters = [], responses = orders_schema_dict)
     @user_validator
     def get(self, request):
         carts = Cart.objects.filter(account=request.user)
