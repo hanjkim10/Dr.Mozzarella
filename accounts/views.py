@@ -1,12 +1,17 @@
 import json, re, bcrypt, jwt
 
 from django.http  import JsonResponse
-from django.views import View
 
 from accounts.models import Account
+from accounts.response import accounts_schema_dict
 from my_settings     import SECRET_KEY, ALGORITHM
 
-class SignupView(View):
+from rest_framework.views import APIView
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
+
+class SignupView(APIView):
+    @swagger_auto_schema(manual_parameters = [], responses = accounts_schema_dict)
     def post(self, request):
         data = json.loads(request.body)
 
@@ -34,7 +39,8 @@ class SignupView(View):
         except KeyError:
             return JsonResponse ({"MESSAGE":"KEY_ERROR"}, status = 400)
 
-class SigninView(View):
+class SigninView(APIView):
+    @swagger_auto_schema(manual_parameters = [], responses = accounts_schema_dict)
     def post(self, request):
         data = json.loads(request.body)
         try:
